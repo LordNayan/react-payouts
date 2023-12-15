@@ -1,7 +1,12 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import styled from "styled-components";
 import Pagination from "./Pagination";
 import { useEffect, useState } from "react";
-import filterIcon from "src/img/filter-icon.png";
+import filterIcon from "../img/filter-icon.png";
 interface StatusProps {
   status?: string;
 }
@@ -84,7 +89,8 @@ const Table = ({ data, isLoading, setPage }: any) => {
                       ...prevState,
                       ["status"]: !prevState["status"],
                     }))
-                  }>
+                  }
+                >
                   {" "}
                   Status
                   <label className="dropdown">
@@ -92,12 +98,14 @@ const Table = ({ data, isLoading, setPage }: any) => {
 
                     <ul
                       className="dd-menu"
-                      style={{ display: !state.status ? "block" : "none" }}>
+                      style={{ display: !state.status ? "block" : "none" }}
+                    >
                       <li onClick={(e: any) => handleFilterSort(e, "Pending")}>
                         <Status status={"Pending"}>Pending</Status>
                       </li>
                       <li
-                        onClick={(e: any) => handleFilterSort(e, "Completed")}>
+                        onClick={(e: any) => handleFilterSort(e, "Completed")}
+                      >
                         <Status status={"Completed"}>Completed</Status>
                       </li>
                       <li onClick={(e: any) => handleFilterSort(e, "All")}>
@@ -127,7 +135,7 @@ const Table = ({ data, isLoading, setPage }: any) => {
               </tr>
             ) : endData ? (
               endData.map((item: any, i: any) => (
-                <Row BG={i}>
+                <TableRow key={i} BG={i}>
                   <td>
                     {" "}
                     {new Date(item?.dateAndTime)
@@ -139,7 +147,7 @@ const Table = ({ data, isLoading, setPage }: any) => {
                   </td>
                   <td> {item?.username}</td>
                   <td>{item?.value}</td>
-                </Row>
+                </TableRow>
               ))
             ) : (
               <tr>
@@ -218,7 +226,7 @@ const Status = styled.span<StatusProps>`
         ? "#60CA57"
         : "#6F767E66"};
 `;
-const Row = styled.tr<Row>`
+const TableRow = styled.tr<Row>`
   background: ${(props: any) =>
     props.BG & 1 ? props.theme.tdBg : props.background};
   &:hover {

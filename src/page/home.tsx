@@ -1,11 +1,13 @@
-import SearchBar from "@/component/SearchBox";
-import Table from "@/component/Table";
-import { useGetDataQuery, useSearchDataQuery } from "@/reducer/Payouts";
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import SearchBar from "../component/SearchBox";
+import Table from "../component/Table";
+import { useGetDataQuery, useSearchDataQuery } from "../reducer/Payouts";
 import { useState } from "react";
 import styled from "styled-components";
-import lightmode from "src/img/light-mode.png";
-import darkmode from "src/img/night-mode.png";
-import { useTheme } from "@/component/stylecomponent/ThemeContext";
+import lightmode from "../img/light-mode.png";
+import darkmode from "../img/night-mode.png";
+import { useTheme } from "../component/stylecomponent/ThemeContext";
 const Home = () => {
   const [username, setUsername] = useState("");
   const [page, setPage] = useState(1);
@@ -27,6 +29,7 @@ const Home = () => {
       <div className="main-heading">
         <h1>Payouts</h1>
         <img
+          alt=""
           style={!mode ? { filter: "invert(1)" } : {}}
           src={mode ? lightmode : darkmode}
           onClick={() => {
